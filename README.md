@@ -9,7 +9,7 @@ such utility for huge files. For ex., we need to count how many products send us
 go-findhuge substring filename
 ```
 
-Substring can contain symbols which is reserved in your shell. We should escape it. How it can be made with Windows command-line, you can read [on this page](http://ss64.com/nt/syntax-esc.html). So, to count the **"<product "** substring we should use following command:
+Substring can contain symbols which are reserved in your shell. We should escape it. How it can be made with Windows command-line, you can read [on this page](http://ss64.com/nt/syntax-esc.html). So, to count the **"<product "** substring we should use following command:
 
 ```
 go-findhuge "^<product " feed_shop1.xml
