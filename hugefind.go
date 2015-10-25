@@ -4,7 +4,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"log"
 	"errors"
 	"path/filepath"
 )
@@ -19,6 +18,9 @@ func main() {
 		fmt.Println("Usage: "+exeName()+" substring filename")
 		return
 	}
+
+	counter := countSubstrings(stringToFind, inputFilename, 1024*1024)
+	fmt.Println(fmt.Sprintf("%d entries found.", counter))
 }
 
 func parseArgs() error {
@@ -28,11 +30,15 @@ func parseArgs() error {
 	stringToFind = os.Args[1]
 	inputFilename = os.Args[2]
 
-	log.Println("String to find: '"+stringToFind+"'")
-	log.Println("File to processing: '"+inputFilename+"'")
+	fmt.Println("String to find: '"+stringToFind+"'")
+	fmt.Println("File to processing: '"+inputFilename+"'")
 
 	if _, err := os.Stat(inputFilename); os.IsNotExist(err) {
-		return errors.New("File '"+inputFilename+"' is not exit.")
+		return errors.New("File '"+inputFilename+"' is not exist.")
+	}
+
+	if len(stringToFind)==0 {
+		return errors.New("Substring should not be empty")
 	}
 
 	return nil;
